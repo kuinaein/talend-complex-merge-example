@@ -5,7 +5,7 @@
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="96" show="false"/>
-    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="0" show="false"/>
+    <elementParameter field="TEXT" name="SCREEN_OFFSET_Y" value="4" show="false"/>
     <elementParameter field="TEXT" name="REPOSITORY_CONNECTION_ID" value="" show="false"/>
     <elementParameter field="TEXT" name="OOZIE_PROPERTY_TYPENAME" value="" show="false"/>
     <elementParameter field="TEXT" name="OOZIE_HADOOP_DISTRIBUTION" value="" show="false"/>
@@ -95,15 +95,15 @@
     <elementParameter field="TEXT" name="FOOTER_LIBRARY" value="" show="false"/>
     <elementParameter field="TEXT" name="FOOTER_CODE" value="" show="false"/>
     <elementParameter field="TEXT" name="FOOTER_IMPORT" value="" show="false"/>
-    <routinesParameter id="_GMq28OESEemLBIbveGGV5Q" name="DataOperation"/>
-    <routinesParameter id="_GNjnwOESEemLBIbveGGV5Q" name="Mathematical"/>
-    <routinesParameter id="_GN7bMOESEemLBIbveGGV5Q" name="Numeric"/>
-    <routinesParameter id="_GOGaUOESEemLBIbveGGV5Q" name="Relational"/>
-    <routinesParameter id="_GOXgEOESEemLBIbveGGV5Q" name="StringHandling"/>
-    <routinesParameter id="_GOrCEOESEemLBIbveGGV5Q" name="TalendDataGenerator"/>
-    <routinesParameter id="_GO65sOESEemLBIbveGGV5Q" name="TalendDate"/>
-    <routinesParameter id="_GPYzwOESEemLBIbveGGV5Q" name="TalendStringUtil"/>
-    <routinesParameter id="_GPI8IOESEemLBIbveGGV5Q" name="TalendString"/>
+    <routinesParameter id="_HMzuMuEmEemjYsanAjuVyw" name="DataOperation"/>
+    <routinesParameter id="_HNPzFOEmEemjYsanAjuVyw" name="Mathematical"/>
+    <routinesParameter id="_HNZkFuEmEemjYsanAjuVyw" name="Numeric"/>
+    <routinesParameter id="_HNsfAOEmEemjYsanAjuVyw" name="Relational"/>
+    <routinesParameter id="_HN2QAOEmEemjYsanAjuVyw" name="StringHandling"/>
+    <routinesParameter id="_HOBPIOEmEemjYsanAjuVyw" name="TalendDataGenerator"/>
+    <routinesParameter id="_HOLnMOEmEemjYsanAjuVyw" name="TalendDate"/>
+    <routinesParameter id="_HOiMgOEmEemjYsanAjuVyw" name="TalendStringUtil"/>
+    <routinesParameter id="_HOXNYOEmEemjYsanAjuVyw" name="TalendString"/>
   </parameters>
   <node componentName="tJava" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="-64" posY="32">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJava_1" show="false"/>
@@ -166,10 +166,10 @@
     <elementParameter field="TEXT" name="LABEL" value="a.csv"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tFileInputDelimited_1">
-      <column comment="" key="true" length="-1" name="id" nullable="false" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="0" key="true" length="-1" name="id" nullable="false" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="name" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="email" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="b_org_id" nullable="false" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="0" key="false" length="-1" name="b_org_id" nullable="false" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" name="REJECT">
       <column comment="" key="true" length="-1" name="id" nullable="false" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
@@ -271,14 +271,14 @@
       <column comment="" key="false" length="-1" name="name" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
-      <outputTables sizeState="INTERMEDIATE" name="by_email" expressionFilter="row5.org_id != 0" activateExpressionFilter="true">
+      <outputTables sizeState="INTERMEDIATE" name="by_email">
         <mapperTableEntries name="msg" expression="&quot;by_email&quot;" type="id_String" nullable="true"/>
         <mapperTableEntries name="id" expression="row4.id " type="id_Integer"/>
         <mapperTableEntries name="org_id" expression="row5.org_id " type="id_Integer"/>
       </outputTables>
-      <outputTables sizeState="INTERMEDIATE" name="not_by_email" expressionFilter="row5.org_id == 0" activateExpressionFilter="true">
+      <outputTables sizeState="INTERMEDIATE" name="not_by_email" activateCondensedTool="true" rejectInnerJoin="true">
         <mapperTableEntries name="id" expression="row4.id " type="id_Integer"/>
         <mapperTableEntries name="name" expression="row4.name " type="id_String"/>
       </outputTables>
@@ -289,7 +289,7 @@
         <mapperTableEntries name="b_org_id" type="id_Integer"/>
         <mapperTableEntries name="errorMessage" type="id_String" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row5" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row5" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="org_id" type="id_Integer"/>
         <mapperTableEntries name="name" type="id_String"/>
         <mapperTableEntries name="email" expression="row4.email " type="id_String" nullable="true" operator="="/>
@@ -355,14 +355,14 @@
       <column comment="" key="false" length="-1" name="name" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
-      <outputTables sizeState="INTERMEDIATE" name="by_name" expressionFilter="row6.org_id != 0" activateExpressionFilter="true">
+      <outputTables sizeState="INTERMEDIATE" name="by_name">
         <mapperTableEntries name="msg" expression="&quot;by_name&quot;" type="id_String" nullable="true"/>
         <mapperTableEntries name="id" expression="not_by_email.id " type="id_Integer"/>
         <mapperTableEntries name="org_id" expression="row6.org_id " type="id_Integer"/>
       </outputTables>
-      <outputTables sizeState="INTERMEDIATE" name="rejected" expressionFilter="row6.org_id == 0" activateExpressionFilter="true">
+      <outputTables sizeState="INTERMEDIATE" name="rejected" activateCondensedTool="true" rejectInnerJoin="true">
         <mapperTableEntries name="msg" expression="&quot;rejected&quot;" type="id_String" nullable="true"/>
         <mapperTableEntries name="id" expression="not_by_email.id " type="id_Integer"/>
         <mapperTableEntries name="name" expression="not_by_email.name " type="id_String"/>
@@ -371,7 +371,7 @@
         <mapperTableEntries name="id" type="id_Integer"/>
         <mapperTableEntries name="name" type="id_String"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row6" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row6" activateCondensedTool="true" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE" innerJoin="true">
         <mapperTableEntries name="org_id" type="id_Integer"/>
         <mapperTableEntries name="name" expression="not_by_email.name " type="id_String" operator="="/>
         <mapperTableEntries name="email" type="id_String" nullable="true"/>
