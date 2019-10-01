@@ -1,5 +1,6 @@
 /temp/
-/.*/
+/.settings/mappings/
+/.settings/relationship.index
 /code/
 /poms/
 /sqlPatterns/
